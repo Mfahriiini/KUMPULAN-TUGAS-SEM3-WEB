@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Latihan4</title>
+    <!-- Link ke Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        
+        .thead-blue {
+            background-color: #007bff;
+            color: white;
+        }
+
+        
+        tbody tr {
+            background-color: #ffffff; 
+            color: black; 
+        }
+
+
+        tbody tr:hover {
+            background-color: #007bff; 
+            color: white; 
+        }
+
+        
+        .btn-profile {
+            background-color: #007bff; 
+            color: white;
+            border: none; 
+        }
+
+        .btn-profile:hover {
+            background-color: #0056b3; 
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Latihan Membuat Tabel</h1>
+        <table class="table table-bordered table-hover">
+            <thead class="thead-blue">
+                <tr>
+                    <th scope="col">No</th>
+                    <th scope="col">Nama</th>
+                    <th scope="col">Nim</th>
+                    <th scope="col">Prodi</th>
+                    <th scope="col">Jenis Kelamin</th>
+                    <th scope="col">Link</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Fahri</td>
+                    <td>2308465</td>
+                    <td>Sik A</td>
+                    <td>Laki-laki</td>
+                    <td><a href="fahri.html" class="btn btn-profile btn-sm">Profile</a></td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Iman</td>
+                    <td>2308234</td>
+                    <td>Sik A</td>
+                    <td>Laki-laki</td>
+                    <td><a href="Iman.html" class="btn btn-profile btn-sm">Profile</a></td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Sattar</td>
+                    <td>2306574</td>
+                    <td>Sik A</td>
+                    <td>Laki-laki</td>
+                    <td><a href="Sattar.html" class="btn btn-profile btn-sm">Profile</a></td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>Riyadi</td>
+                    <td>2375674</td>
+                    <td>Sik A</td>
+                    <td>Laki-laki</td>
+                    <td><a href="Riyadi.html" class="btn btn-profile btn-sm">Profile</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Bootstrap JS dan dependensinya -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
+
