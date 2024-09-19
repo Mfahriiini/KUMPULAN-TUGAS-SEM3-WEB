@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Input Mahasiswa</title>
+    <style>
+        body {
+            font-family: 'Times New Roman', Times, serif, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #b6cccc;
+        }
+        .container {
+            background-color: rgb(206, 223, 223);
+            padding: 20px;
+            border-radius: 8px;
+            max-width: 400px;
+            margin: 0 auto;
+            box-shadow: 0 4px 8px rgba(14, 6, 6, 0.1);
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+        .input-field {
+            margin-bottom: 15px;
+        }
+        .input-field label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .input-field input, .input-field textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #000000;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        .input-field textarea {
+            resize: vertical;
+            height: 60px;
+        }
+        .submit-btn {
+            width: 100%;
+            padding: 10px;
+            background-color: #242eb6;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .submit-btn:hover {
+            background-color: #252fbd;
+        }
+        .result {
+            margin-top: 20px;
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            display: none;
+        }
+        .result p {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Form Data Mahasiswa</h2>
+    <form id="formMahasiswa">
+        <div class="input-field">
+            <label for="nama">Nama:</label>
+            <input type="text" id="nama" required>
+        </div>
+        <div class="input-field">
+            <label for="nim">NIM:</label>
+            <input type="text" id="nim" required>
+        </div>
+        <div class="input-field">
+            <label for="kelas">Kelas:</label>
+            <input type="text" id="kelas" required>
+        </div>
+        <div class="input-field">
+            <label for="alamat">Alamat:</label>
+            <textarea id="alamat" required></textarea>
+        </div>
+        <button type="submit" class="submit-btn">Submit</button>
+    </form>
+    <div class="result" id="result"></div>
+</div>
+
+<script>
+    // Event 1: When the DOM is fully loaded
+    document.addEventListener("DOMContentLoaded", function() {
+        console.log("DOM fully loaded and parsed");
+    });
+
+    // Get form and result container
+    const form = document.getElementById('formMahasiswa');
+    const result = document.getElementById('result');
+
+    // Event 2: Form submission
+    form.addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent form from reloading the page
+        
+        // Get input values
+        const nama = document.getElementById('nama').value;
+        const nim = document.getElementById('nim').value;
+        const kelas = document.getElementById('kelas').value;
+        const alamat = document.getElementById('alamat').value;
+
+        // Display result
+        result.innerHTML = `
+            <p><strong>Nama:</strong> ${nama}</p>
+            <p><strong>NIM:</strong> ${nim}</p>
+            <p><strong>Kelas:</strong> ${kelas}</p>
+            <p><strong>Alamat:</strong> ${alamat}</p>
+        `;
+        result.style.display = 'block'; // Show result div
+    });
+
+    // Event 3: Add 'focus' event to inputs
+    document.querySelectorAll('input, textarea').forEach(function(input) {
+        input.addEventListener('focus', function() {
+            input.style.backgroundColor = '#e9f7ef'; // Change background color on focus
+        });
+    });
+
+    // Event 4: Add 'blur' event to inputs
+    document.querySelectorAll('input, textarea').forEach(function(input) {
+        input.addEventListener('blur', function() {
+            input.style.backgroundColor = ''; // Reset background color on blur
+        });
+    });
+
+    // Event 5: Change button style when hovering
+    const submitButton = document.querySelector('.submit-btn');
+    submitButton.addEventListener('mouseover', function() {
+        submitButton.style.backgroundColor = '#218838'; // Darken button on hover
+    });
+    submitButton.addEventListener('mouseout', function() {
+        submitButton.style.backgroundColor = '#28a745'; // Reset button color when not hovering
+    });
+
+</script>
+
+</body>
+</html>
