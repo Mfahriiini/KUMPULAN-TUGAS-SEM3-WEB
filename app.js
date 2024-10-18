@@ -1,46 +1,56 @@
-const express = require('express');
-const mysql = require('mysql2');
-const bodyParser = require('body-parser');
+const express = require ('express');
+const bodyParser = require ('body-parser');
+const session = require ('express-session');
+const authRoutes = require ('./routes/auth');
+const path = require ('path');
+const { register } = require('module');
 
-const app = express();
-app.use(bodyParser.urlencoded({extended : false}));
-app.use(bodyParser.json());
+const app = express ();
 
+//Set EJS sebagai template engine
+app.set ('view engine', 'ejs');
 
+//Middleware
+app.use (bodyParser.json());
+app.use (bodyParser.urlencoded({ extended: true }));
+app.use (session({
+    secret: 'secret',
+    resave: false,
+    saveUninitialized: true
+}));
 
-const connection = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: 'fahri', 
-    database: 'pertemuan5'
+//Set static folder
+app.use (express.static(path.join(__dirname, 'public')));
+
+// Middleweware to check login status
+app.use ((req, res, next) => {
+    if (!req.session.user && req.path !== '/auth/login' && req.path !==
+        '/auth/register') {
+            // if the user is not logged in and trying to access any other page
+    except login/register
+            return res.redirect('/auth/login');
+        } else if (req.session.user && req.path === '/') {
+            // if user is logged in and tries to access the root route, redirec 
+            to profile
+                   return res.redirect('/auth/profile');
+        }
+        next ();
 });
 
-connection.connect((err) => {
-    if(err) {
-        console.error("Terjadi kesalahan dalam koneksi ke MySQL:", err.stack);
-        return;
+// Routes
+app.use ('/auth', authRoutes);
+
+// Root Route: Redirect to /auth/login or /auth/profile based on session
+app.get ('/', (req, res) => {
+    if (req.session.user) {
+        return res.redirect ('/auth/profile');
+    } else {
+        return res.redirect('/auth/login');
     }
-    console.log("Koneksi MySQL berhasil dengan id" + connection.threadId)
-    });
+});
 
-    app.set('view engine', 'ejs');
-
-    //ini adalah routing (Create, Read, Update, Delete)
-
-    //Read
-    app.get('/', (req, res) => {
-        const query = 'SELECT * FROM users';
-        connection.query(query, (err, results ) => {
-            res.render('index',{users: results});
-
-        });
-
-    });
-
-
-
-
-
-    app.listen(3000,() =>{
-        console.log("Server bejalan di port 3000, buka web melalui http://local:host:3000")
-    });
+//Menjalankan Server 
+app.listen (3000, ( => {
+    console.log ('Server running on port 3000');
+}))
+});
